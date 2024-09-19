@@ -1,305 +1,48 @@
-# tictactoe-java-
-#a program for the tictactoe game using java's GUI
-#eclipse ide
+# Tic-Tac-Toe Game (Java GUI)
 
-package tictactoe;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Random;
+## Overview
+This is a simple Tic-Tac-Toe game built using Java Swing for GUI components. The game allows two players ('X' and 'O') to take turns playing on a 3x3 grid. The first player to align three symbols in a row, column, or diagonal wins the game. If all grid spaces are filled without any player winning, the game ends in a draw.
 
-import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+## Features
+- GUI built using Java's Swing library.
+- Two-player mode with alternating turns.
+- Displays current player's turn.
+- Automatically detects win conditions or draws.
+- Game status displayed at the top of the window.
 
-public class tictac extends JFrame implements ActionListener {
-Random random= new Random();
+## Getting Started
+1. Install the **Eclipse IDE** or any Java IDE of your choice.
+2. Create a new Java project and package named `tictactoe`.
+3. Create a new class file `tictac.java` and paste the code.
+4. Run the program to start the Tic-Tac-Toe game.
 
-JPanel panel= new JPanel();
-JPanel button_p= new JPanel();
-JLabel text= new JLabel();
-JButton [] button= new JButton[9];
-boolean player_turn;
-	
-	tictac(){
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800,800);
-		this.getContentPane().setBackground(new Color(255,255,255));
-		this.setLayout(new BorderLayout());
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	
-		
-		text.setBackground(new Color(0,0,0));
-		text.setForeground(new Color(25,255,0));
-		text.setFont(new Font("ink free", Font.BOLD,75));
-		text.setHorizontalTextPosition(JLabel.CENTER);
-		text.setText("tic tactoe");
-		text.setOpaque(true);
-		
-		
-		
-		
-		panel.add(text);
-		this.add(panel);
-		this.add(panel,BorderLayout.NORTH);
-		
-		button_p.setLayout(new GridLayout(3,3));
-		panel.setBounds(0,0,800,100);
-		
-		button_p.setLayout(new GridLayout(3,3));
-		button_p.setBackground(new Color(0, 255, 0));
-		 this.add(button_p);
-		
-		 for(int i = 0; i<9 ; i ++) {
-			 button[i] = new JButton();
-			 button_p.add(button[i]);
-			 button[i].setFont(new Font("ink free", Font.BOLD,120));
-			 button[i].setFocusable(false);
-			 button[i].addActionListener(this);
-			 
-		 }
-		firstturn();
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-	for(int i =0; i<9;i++) {
-	if(e.getSource() == button[i]) {
-	if (player_turn) {
-		if(button[i].getText()=="") {
-			button[i].setForeground(new Color(255,0,0 ));
-	        button[i].setText("O");
-	        player_turn=false;
-	        text.setText("o-turn");
-		  check();
-		
-		}
-	}
-	else {
-		button[i].setForeground(new Color(0,0,0 ));
-        button[i].setText("O");
-        player_turn=true;
-        text.setText("O-turn");
-		check();		
-	}
-		
-		
-	}
-		}		
-		
-	}
-	public void firstturn() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if(random.nextInt(2)== 0) {
-			player_turn=true;
-			text.setText("x- turn");
-		}
-		else {
-			player_turn=false;
-			text.setText("o- turn");
-		}
-		
-		
-	}
-	public void check() {
-		if ( (button[0].getText()== "X") &&  
-				(button[1].getText()== "X")
-				&&
-				(button[1].getText()== "X")) {
-			
-			xwins(0,1,2);
-			
-			
-		}
-		if ( (button[1].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[7].getText()== "X")) {
-			
-			xwins(1,4,7);	
-		}
-		if ( (button[3].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[5].getText()== "X")) {
-			
-			xwins(3,4,5);	
-		}
-		if ( (button[0].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[8].getText()== "X")) {
-			
-			xwins(0,4,8);	
-		}
-		if ( (button[2].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[6].getText()== "X")) {
-			
-			xwins(2,4,6);	
-		}
-		if ( (button[0].getText()== "X") &&  
-				(button[1].getText()== "X")
-				&&
-				(button[1].getText()== "X")) {
-			
-			xwins(0,1,2);
-			
-			
-		}
-		if ( (button[1].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[7].getText()== "X")) {
-			
-			xwins(1,4,7);	
-		}
-		if ( (button[3].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[5].getText()== "X")) {
-			
-			xwins(3,4,5);	
-		}
-		if ( (button[0].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[8].getText()== "X")) {
-			
-			xwins(0,4,8);	
-		}
-		if ( (button[2].getText()== "X") &&  
-				(button[4].getText()== "X")
-				&&
-				(button[6].getText()== "X")) {
-			
-			xwins(2,4,6);	
-			
-			
-		}
-		if ( (button[0].getText()== "O") &&  
-				(button[1].getText()== "O")
-				&&
-				(button[1].getText()== "O")) {
-			
-			owins(0,1,2);
-			
-			
-		}
-		if ( (button[1].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[7].getText()== "O")) {
-			
-			owins(1,4,7);	
-		}
-		if ( (button[3].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[5].getText()== "O")) {
-			
-			owins(3,4,5);	
-		}
-		if ( (button[0].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[8].getText()== "O")) {
-			
-			owins(0,4,8);	
-		}
-		if ( (button[2].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[6].getText()== "O")) {
-			
-			owins(2,4,6);	
-			
-			
-		}
-		if ( (button[0].getText()== "O") &&  
-				(button[1].getText()== "O")
-				&&
-				(button[1].getText()== "O")) {
-			
-			owins(0,1,2);
-			
-			
-		}
-		if ( (button[1].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[7].getText()== "O")) {
-			
-			owins(1,4,7);	
-		}
-		if ( (button[3].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[5].getText()== "O")) {
-			
-			owins(3,4,5);	
-		}
-		if ( (button[0].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[8].getText()== "O")) {
-			
-			owins(0,4,8);	
-		}
-		if ( (button[2].getText()== "O") &&  
-				(button[4].getText()== "O")
-				&&
-				(button[6].getText()== "O")) {
-			
-			owins(2,4,6);	
-		}
-		
-	}
-	public void xwins(int a, int b , int  c) {
-		button[a].setBackground(Color.green);
-		button[b].setBackground(Color.green);
-		button[c].setBackground(Color.green);
-		
-		for(int i =0 ; i<9;i++) {
-			button[i].setEnabled(false);
-		}
-		text.setText("X-WINS");
-		
-	}
-    public void owins(int a, int b , int  c) {
-		button[a].setBackground(Color.green);
-		button[b].setBackground(Color.green);
-		button[c].setBackground(Color.green);
-		
-		for(int i =0 ; i<9;i++) {
-			button[i].setEnabled(false);
-		}
-		text.setText("O-WINS");
-		
-	
-	}
+## Prerequisites
+- Java 8 or above installed.
+- Eclipse IDE (or any preferred Java IDE).
 
-}
+## How the Game Works
+1. A 3x3 grid is displayed on the screen using buttons.
+2. A text label at the top displays which player's turn it is.
+3. Players click on the buttons to place their symbol ('X' or 'O') on the grid.
+4. The game automatically checks for winning conditions (three identical symbols in a row, column, or diagonal).
+5. If a player wins, the game disables the grid and displays the winner.
+6. If the grid is filled without a winner, the game ends in a draw.
 
+## Code Structure
+- **tictac.java**: Main class containing the GUI setup, game logic, and event handling.
+  - **JPanel, JButton, JLabel**: Components used for building the user interface.
+  - **actionPerformed()**: Method to handle user input (button clicks) and update the game state.
+  - **check()**: Function to verify if a player has won after each move.
+  - **firstTurn()**: Randomly selects the first player.
+  - **xWins(), oWins()**: Methods to handle game-over scenarios when a player wins.
 
+## Running the Game
+- Simply run the `tictac` class in your IDE. The Tic-Tac-Toe window will appear, and you can begin playing by clicking the buttons.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#new java class in the same package , we deeclare the tictac class under the static void main method
-package tictactoe;
+## Future Improvements
+- Add support for AI to play against the computer.
+- Include reset functionality to start a new game without restarting the program.
+- Track player scores over multiple rounds.
 
-public class main {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-new tictac();
-	}
-
-}
+## License
+This project is for educational purposes only.
